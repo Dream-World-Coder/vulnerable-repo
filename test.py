@@ -19,13 +19,13 @@ api_key = "sk_live_51HJG1287SHBAjsg87123gasd"
 # 2. Weak Cryptography
 def generate_hash(data):
     # The rule registry should flag md5() as deprecated.
-    return hashlib.md5(data.encode()).hexdigest()
+    return hashlib.sha256(data.encode()).hexdigest()
 
 
 # 3. Insecure Configuration (TLS)
 def fetch_data(url):
     # This disables TLS verification, allowing MITM attacks.
-    return requests.get(url, verify=False)
+    return requests.get(url, verify=True)
 
 
 # =====================================================================

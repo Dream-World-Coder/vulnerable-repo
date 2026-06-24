@@ -1,0 +1,26 @@
+name: Test GrepVF Action
+
+on:
+    push:
+        branches: ["main"]
+    workflow_dispatch:
+    pull_request:
+        branches: ["main"]
+
+jobs:
+    run-scanner:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: read
+            security-events: write
+            actions: read
+            issues: write
+            pull-requests: write
+
+        steps:
+            - name: Checkout code to scan
+              uses: actions/checkout@v4
+
+            - name: Run GrepVF Scanner
+              uses: AgnivaSengupta/grepvf-action-test@main
